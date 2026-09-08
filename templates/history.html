@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction History</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            background: #1f2937;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav h2 {
+            color: white;
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            width: 95%;
+            max-width: 1400px;
+            margin: 40px auto;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title h1 {
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            color: #666;
+        }
+
+        /* ================= CARD ================= */
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow-x: auto;
+        }
+
+        /* ================= TABLE ================= */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th {
+            background: #1f2937;
+            color: white;
+            padding: 14px;
+            text-align: center;
+        }
+
+        td {
+            padding: 13px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        /* ================= COST ================= */
+
+        .cost {
+            font-weight: bold;
+            color: #0f766e;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .empty {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+
+        .empty h2 {
+            margin-bottom: 10px;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 22px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+            background: #1f2937;
+            color: white;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 15px;
+            }
+
+            nav a {
+                margin-left: 10px;
+                font-size: 13px;
+            }
+
+            .container {
+                width: 98%;
+            }
+
+        }
+
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+
+</head>
+
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <h2>🏥 Medical Insurance AI</h2>
+
+    <div>
+
+        <a href="/">Home</a>
+
+        <a href="/dashboard">Dashboard</a>
+
+        <a href="/predict">Predict</a>
+
+        <a href="/analysis">Analysis</a>
+
+        <a href="/models">Models</a>
+
+        <a href="/history">History</a>
+
+        <a href="/about">About</a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+    <div class="title">
+
+        <h1>📋 Prediction History</h1>
+
+        <p>
+            View all previous medical insurance cost predictions
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        {% if history %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Date & Time</th>
+
+                    <th>Age</th>
+
+                    <th>Sex</th>
+
+                    <th>BMI</th>
+
+                    <th>Children</th>
+
+                    <th>Smoker</th>
+
+                    <th>Region</th>
+
+                    <th>Predicted Cost</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for row in history %}
+
+                <tr>
+
+                    <td>
+                        {{ row["Date & Time"] }}
+                    </td>
+
+                    <td>
+                        {{ row["Age"] }}
+                    </td>
+
+                    <td>
+                        {{ row["Sex"] }}
+                    </td>
+
+                    <td>
+                        {{ row["BMI"] }}
+                    </td>
+
+                    <td>
+                        {{ row["Children"] }}
+                    </td>
+
+                    <td>
+                        {{ row["Smoker"] }}
+                    </td>
+
+                    <td>
+                        {{ row["Region"] }}
+                    </td>
+
+                    <td class="cost">
+                        ${{ "%.2f"|format(row["Predicted Cost"]) }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div class="empty">
+
+            <h2>📭 No Prediction History</h2>
+
+            <p>
+                You haven't made any predictions yet.
+            </p>
+
+            <a href="/predict" class="btn">
+                Make Your First Prediction
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        Medical Insurance Prediction System
+    </p>
+
+    <p>
+        Machine Learning & Data Science Project
+    </p>
+
+</footer>
+
+</body>
+
+</html>

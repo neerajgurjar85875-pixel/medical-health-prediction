@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data Analysis - Medical Insurance Prediction</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        nav {
+            background: #172554;
+            padding: 18px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 18px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #172554;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 35px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            text-align: center;
+            color: #172554;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .full {
+            grid-column: span 2;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: #172554;
+            color: white;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: span 1;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px;
+            }
+        }
+
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+
+        <a href="/">Home</a>
+
+        <a href="/predict">Prediction</a>
+
+        <a href="/analysis">Data Analysis</a>
+
+        <a href="/models">Models</a>
+
+        <a href="/about">About</a>
+
+    </nav>
+
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <h1>📊 Medical Insurance Data Analysis</h1>
+
+        <p class="subtitle">
+            Exploratory Data Analysis of Medical Insurance Dataset
+        </p>
+
+
+        <div class="dashboard">
+
+
+            <!-- Age Distribution -->
+            <div class="card">
+
+                <h2>Age Distribution</h2>
+
+                <img
+                    src="{{ url_for('static', filename='age_distribution.png') }}"
+                    alt="Age Distribution"
+                >
+
+            </div>
+
+
+            <!-- BMI Distribution -->
+            <div class="card">
+
+                <h2>BMI Distribution</h2>
+
+                <img
+                    src="{{ url_for('static', filename='bmi_distribution.png') }}"
+                    alt="BMI Distribution"
+                >
+
+            </div>
+
+
+            <!-- Smoker Charges -->
+            <div class="card">
+
+                <h2>Smoker vs Insurance Charges</h2>
+
+                <img
+                    src="{{ url_for('static', filename='smoker_charges.png') }}"
+                    alt="Smoker vs Charges"
+                >
+
+            </div>
+
+
+            <!-- Region Charges -->
+            <div class="card">
+
+                <h2>Region vs Insurance Charges</h2>
+
+                <img
+                    src="{{ url_for('static', filename='region_charges.png') }}"
+                    alt="Region vs Charges"
+                >
+
+            </div>
+
+
+            <!-- BMI vs Charges -->
+            <div class="card full">
+
+                <h2>BMI vs Insurance Charges</h2>
+
+                <img
+                    src="{{ url_for('static', filename='bmi_charges.png') }}"
+                    alt="BMI vs Charges"
+                >
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            Medical Insurance Prediction System
+        </p>
+
+        <p>
+            Machine Learning & Data Science Project
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

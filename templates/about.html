@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Project - MedPredict AI</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        nav {
+            background: #173f5f;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav h2 {
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        .box {
+            background: white;
+            padding: 35px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: #173f5f;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #173f5f;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        ul {
+            line-height: 2;
+            color: #555;
+        }
+
+        footer {
+            background: #173f5f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>MedPredict AI</h2>
+
+    <div>
+        <a href="/">Home</a>
+        <a href="/predict">Prediction</a>
+        <a href="/analysis">Analysis</a>
+        <a href="/models">Models</a>
+        <a href="/about">About</a>
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>ℹ️ About Project</h1>
+
+
+    <div class="box">
+
+        <h2>Project Overview</h2>
+
+        <p>
+            MedPredict AI is a Machine Learning based web application
+            designed to estimate medical insurance costs using
+            customer information.
+        </p>
+
+    </div>
+
+
+    <div class="box">
+
+        <h2>🎯 Objective</h2>
+
+        <p>
+            The main objective of this project is to use Machine
+            Learning regression techniques to estimate medical
+            insurance charges from customer-related features.
+        </p>
+
+    </div>
+
+
+    <div class="box">
+
+        <h2>🧠 Machine Learning Workflow</h2>
+
+        <ul>
+            <li>Data Collection</li>
+            <li>Data Cleaning</li>
+            <li>Exploratory Data Analysis</li>
+            <li>Feature Preprocessing</li>
+            <li>Model Training</li>
+            <li>Model Evaluation</li>
+            <li>Best Model Selection</li>
+            <li>Web Application Deployment</li>
+        </ul>
+
+    </div>
+
+
+    <div class="box">
+
+        <h2>🛠️ Technologies Used</h2>
+
+        <ul>
+            <li>Python</li>
+            <li>Pandas</li>
+            <li>NumPy</li>
+            <li>Scikit-learn</li>
+            <li>Flask</li>
+            <li>HTML & CSS</li>
+            <li>Joblib</li>
+        </ul>
+
+    </div>
+
+</div>
+
+
+<footer>
+    © 2026 MedPredict AI | DSML College Project
+</footer>
+
+</body>
+
+</html>

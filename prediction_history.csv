@@ -1,0 +1,7 @@
+Date & Time,Age,Sex,BMI,Children,Smoker,Region,Predicted Cost
+02-09-2026 12:11:48,25,female,24.6,2,no,northwest,7956.21
+02-09-2026 12:14:13,26,male,22.2,1,no,southeast,7929.97
+02-09-2026 12:22:21,16,male,21.2,0,no,southeast,2352.54
+02-09-2026 12:26:52,45,male,21.2,1,no,southeast,8405.27
+08-09-2026 15:58:21,22,female,25.6,0,yes,northwest,18169.76
+08-09-2026 16:14:04,56,male,10.2,0,no,southeast,12027.3

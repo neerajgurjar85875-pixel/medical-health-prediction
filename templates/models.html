@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Model Comparison</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        nav {
+            background: #172554;
+            padding: 18px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 18px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #172554;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 35px;
+        }
+
+        .best-model {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .best-model h2 {
+            color: #172554;
+            margin-bottom: 10px;
+        }
+
+        .best-name {
+            font-size: 26px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .table-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #172554;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        td {
+            padding: 14px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f1f5f9;
+        }
+
+        .best-row {
+            font-weight: bold;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 13px;
+            margin-left: 8px;
+        }
+
+        .info-section {
+            margin-top: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-section h2 {
+            color: #172554;
+            margin-bottom: 15px;
+        }
+
+        .info-section p {
+            line-height: 1.7;
+            color: #555;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: #172554;
+            color: white;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+
+            nav a {
+                display: inline-block;
+                margin: 8px;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+        }
+
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <a href="/">Home</a>
+
+        <a href="/predict">Prediction</a>
+
+        <a href="/analysis">Data Analysis</a>
+
+        <a href="/models">Models</a>
+
+        <a href="/about">About</a>
+
+    </nav>
+
+
+    <!-- Main Container -->
+
+    <div class="container">
+
+        <h1>🤖 Machine Learning Model Comparison</h1>
+
+        <p class="subtitle">
+            Performance comparison of different Machine Learning models
+        </p>
+
+
+        <!-- Best Model -->
+
+        <div class="best-model">
+
+            <h2>🏆 Best Performing Model</h2>
+
+            <div class="best-name">
+                {{ best_model }}
+            </div>
+
+            <p style="margin-top: 10px; color: #666;">
+                Selected based on the model comparison results.
+            </p>
+
+        </div>
+
+
+        <!-- Model Comparison Table -->
+
+        <div class="table-card">
+
+            <h2 style="color:#172554; margin-bottom:20px;">
+                Model Performance
+            </h2>
+
+
+            {% if results %}
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        {% for key in results[0].keys() %}
+
+                        <th>
+                            {{ key }}
+                        </th>
+
+                        {% endfor %}
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for row in results %}
+
+                    <tr>
+
+                        {% for key, value in row.items() %}
+
+                        <td>
+
+                            {{ value }}
+
+                        </td>
+
+                        {% endfor %}
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <p>
+                No model comparison data available.
+            </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Explanation -->
+
+        <div class="info-section">
+
+            <h2>📌 Model Evaluation</h2>
+
+            <p>
+                Different Machine Learning models are evaluated using
+                performance metrics available in the model comparison
+                dataset. The purpose of model comparison is to identify
+                the model that provides the best prediction performance
+                for medical insurance cost prediction.
+            </p>
+
+            <br>
+
+            <p>
+                A good regression model generally aims for lower
+                prediction error and better goodness-of-fit. The final
+                model can then be used by the prediction system to
+                estimate medical insurance costs.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            Medical Insurance Prediction System
+        </p>
+
+        <p style="margin-top: 5px;">
+            Machine Learning & Data Science Project
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

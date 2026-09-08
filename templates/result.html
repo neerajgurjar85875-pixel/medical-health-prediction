@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        nav {
+            background: #172554;
+            padding: 18px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 18px;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 950px;
+            margin: 40px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #172554;
+        }
+
+        .result-card {
+            background: white;
+            margin-top: 30px;
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        }
+
+        .amount {
+            font-size: 42px;
+            font-weight: bold;
+            color: #172554;
+            margin: 20px 0;
+        }
+
+        .note {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .section {
+            background: white;
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .section h2 {
+            color: #172554;
+            margin-bottom: 18px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .summary-item {
+            background: #f4f7fb;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .summary-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #172554;
+        }
+
+        .factor {
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #eef2ff;
+            border-radius: 8px;
+            line-height: 1.5;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 13px 25px;
+            background: #172554;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .button:hover {
+            background: #1e3a8a;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: #172554;
+            color: white;
+            text-align: center;
+        }
+
+        @media (max-width: 700px) {
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .amount {
+                font-size: 32px;
+            }
+
+        }
+
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <nav>
+
+        <a href="/">Home</a>
+
+        <a href="/predict">Prediction</a>
+
+        <a href="/analysis">Data Analysis</a>
+
+        <a href="/models">Models</a>
+
+        <a href="/about">About</a>
+
+    </nav>
+
+
+    <div class="container">
+
+
+        <h1>📊 Prediction Result</h1>
+
+
+        <div class="result-card">
+
+            <h2>Estimated Medical Insurance Cost</h2>
+
+            <div class="amount">
+                ${{ prediction }}
+            </div>
+
+            <p class="note">
+                This is an estimated insurance cost generated
+                using the trained Machine Learning model.
+            </p>
+
+            <a href="/predict" class="button">
+                🔄 Predict Again
+            </a>
+
+        </div>
+
+
+        <!-- Input Summary -->
+
+        <div class="section">
+
+            <h2>📋 Customer Information</h2>
+
+            <div class="summary-grid">
+
+                {% for key, value in summary.items() %}
+
+                <div class="summary-item">
+
+                    <strong>{{ key }}</strong>
+
+                    {{ value }}
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <!-- Explanation -->
+
+        <div class="section">
+
+            <h2>🔍 Why may this estimate vary?</h2>
+
+            {% for factor in factors %}
+
+            <div class="factor">
+
+                {{ factor }}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <div class="section">
+
+            <h2>⚠️ Important Note</h2>
+
+            <p class="note">
+
+                This prediction is an estimated value produced by a
+                Machine Learning model. It should be used for
+                educational and demonstration purposes and not as
+                professional financial or medical advice.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <footer>
+
+        <p>Medical Insurance Prediction System</p>
+
+        <p style="margin-top:5px;">
+            Machine Learning & Data Science Project
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
